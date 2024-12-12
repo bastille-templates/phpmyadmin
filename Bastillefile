@@ -1,0 +1,19 @@
+# install required famp
+INCLUDE https://github.com/bastille-templates/apache
+INCLUDE https://github.com/bastille-templates/php
+INCLUDE https://github.com/bastille-templates/mysql
+
+PKG phpMyAdmin5-php82 php82-mysqli php82-fileinfo php82-session php82-curl
+
+# copy files
+CP usr /
+
+CMD mysql -u root -e "CREATE database phpmyadmin"
+CMD mysql -u root -e "CREATE user pma@'localhost' identified by 'pmapass'"
+CMD mysql -u root -e "GRANT ALL PRIVILEGES on phpmyadmin.* to pma@'localhost'"
+CMD cd /usr/local/www/phpMyAdmin/sql && mysql < create_tables.sql
+CMD sed -i '' 's%Require ip 127.0.0.1 xx.xx.xx.xx%Require ip 127.0.0.1 ${JAIL_IP}%g' /usr/local/etc/apache24/Includes/phpmyadmin.conf
+CMD chown -R www:www /usr/local/www/phpMyAdmin
+
+SERVICE php-fpm restart
+SERVICE apache24 restart
