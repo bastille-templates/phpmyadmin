@@ -13,7 +13,7 @@ declare(strict_types=1);
  * This is needed for cookie based authentication to encrypt the cookie.
  * Needs to be a 32-bytes long string of random bytes. See FAQ 2.10.
  */
-$cfg['blowfish_secret'] = \sodium_hex2bin('5ba7c764dd668516338af26f2a299a246cac1b9a40341343951a44059279bcaa'); /* YOU MUST FILL IN THIS FOR COOKIE AUTH! */
+$cfg['blowfish_secret'] = \sodium_hex2bin(''); /* YOU MUST FILL IN THIS FOR COOKIE AUTH! */
 
 /**
  * Servers configuration
@@ -28,7 +28,7 @@ $i++;
 $cfg['Servers'][$i]['auth_type'] = 'cookie';
 /* Server parameters */
 $cfg['Servers'][$i]['host'] = 'localhost';
-$cfg['Servers'][$i]['compress'] = false;
+$cfg['Servers'][$i]['compress'] = true;
 $cfg['Servers'][$i]['AllowNoPassword'] = true;
 
 /**
