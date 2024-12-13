@@ -15,5 +15,5 @@ CMD cd /usr/local/www/phpMyAdmin/sql && mysql < create_tables.sql
 CMD sed -i '' 's%Require ip 127.0.0.1 xx.xx.xx.xx%Require ip 127.0.0.1 ${JAIL_IP}%g' /usr/local/etc/apache24/Includes/phpmyadmin.conf
 CMD chown -R www:www /usr/local/www/phpMyAdmin
 
-SERVICE php-fpm restart
+SERVICE php_fpm restart
 SERVICE apache24 restart
