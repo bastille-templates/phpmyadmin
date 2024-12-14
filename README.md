@@ -1,5 +1,7 @@
 ## Now apply template to container
 ```sh
+bastille create phpmyadmin 14.1-RELEASE 10.0.0.254
+
 bastille bootstrap https://github.com/bastille-templates/phpmyadmin
 bastille template phpmyadmin bastille-templates/phpmyadmin
 ```
